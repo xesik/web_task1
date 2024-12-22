@@ -1,0 +1,35 @@
+{% extends "task/base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Ваши задачи:</h2>
+
+    <ul class="list-group">
+        {% for task in tasks %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong>{{ task.text }}</strong>
+                <span class="badge badge-primary">{{ task.get_priority_display }}</span>
+                <small class="text-muted">До {{ task.deadline }}</small>
+                {% if task.isitdone %}
+                    <span class="badge badge-success">Выполнено</span>
+                {% else %}
+                    <span class="badge badge-warning">Не выполнено</span>
+                {% endif %}
+            </div>
+            <div>
+                <a href="{% url 'task:edit_task' task.id %}" class="btn btn-sm btn-info">Редактировать</a>
+                <a href="{% url 'task:del_task' task.id %}" class="btn btn-sm btn-danger">Удалить</a>
+            </div>
+        </li>
+        {% empty %}
+        <li class="list-group-item text-center text-muted">
+            Задач пока нет ¯\_(ツ)_/¯
+        </li>
+        {% endfor %}
+    </ul>
+
+    <div class="mt-4">
+        <a href="{% url 'task:add_task' %}" class="btn btn-primary">Добавить задачу</a>
+    </div>
+</div>
+{% endblock content %}

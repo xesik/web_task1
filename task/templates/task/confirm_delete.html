@@ -1,0 +1,14 @@
+{% extends "task/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-danger">Удаление задачи</h2>
+    <p>Вы точно хотите удалить задание: <strong>"{{ task.text }}"</strong>?</p>
+
+    <form action="" method="post" class="mt-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Да, удалить</button>
+        <a href="{% url 'task:index' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock content %}

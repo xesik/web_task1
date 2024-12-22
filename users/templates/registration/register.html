@@ -1,0 +1,9 @@
+{% extends "task/base.html" %}
+{% block content %}
+    <form method="post" action="{% url 'users:register' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Зарегестрироваться</button>
+        <input type="hidden" name="next" value="{% url 'task:index' %}"/>
+    </form>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends "task/base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Добавить новую задачу</h2>
+
+    <form action="{% url 'task:add_task' %}" method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Добавить</button>
+        <a href="{% url 'task:index' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+
+{% endblock content %}
